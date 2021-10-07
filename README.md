@@ -1,2 +1,2 @@
 # Inventory-Subsystem
-Inventory subsystem for a car dealership
+Inventory subsystem for a car dealership using java
