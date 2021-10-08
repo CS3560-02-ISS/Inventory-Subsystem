@@ -1,0 +1,45 @@
+@startuml
+class Car
+class Transaction
+class Customer
+class CarListing
+class Appointment
+class Employee
+
+Customer "1" -- "0..many" Transaction
+CarListing "1" -- "many" Car
+CarListing "1" -- "many" Transaction
+Customer "1" -- "0..many" Appointment
+Appointment "many" -- "1" CarListing
+Appointment "many" -- "1" Employee
+
+Car : vin
+Car : stockID
+
+CarListing : make
+CarListing : model
+CarListing : year
+CarListing : stockCount
+CarListing : stockID
+CarListing : appointmentCount
+
+Transaction : vin
+Transaction : price
+Transaction : date
+Transaction : transactionNumber
+Transaction : customerID
+
+Customer : name
+Customer : address
+Customer : customerID
+
+Appointment : date
+Appointment : time
+Appointment : empolyeeID
+Appointment : customerID
+Appointment : stockID
+Appointment : appointmentID
+
+Employee : name
+Employee : employeeID
+@enduml
