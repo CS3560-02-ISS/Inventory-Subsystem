@@ -1,10 +1,11 @@
 public class Employee {
 	private Appointment[] appointments;
-	private String name;
-	private int id;
+	private String _name;
+	private int _id;
 
-	Employee(...){
-		// TODO
+	Employee(int id, String name){
+		_id = id;
+		_name = name;
 	}
 	
 	/**
@@ -12,7 +13,7 @@ public class Employee {
 	* @return array of appointments
 	*/
 	public Appointment[] getAllAppointments(){
-	
+		return null;	
 	}
 
 	/**
@@ -20,7 +21,7 @@ public class Employee {
 	* @return true if employee can take on new appointment
 	*/
 	public boolean reassignAppointment(int employeeID){
-	
+		return false;	
 	}
 
 	/**
@@ -29,7 +30,7 @@ public class Employee {
 	*/
 	
 	public boolean closeAppointment(Appointment appointment){
-	
+		return false;	
 	}
 
 	

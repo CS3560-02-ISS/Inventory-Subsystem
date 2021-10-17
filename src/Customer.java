@@ -6,8 +6,11 @@ public class Customer {
 	private String password;
 	private Payment payment;
 
-	Customer(...){
-		// TODO	
+	Customer(int id, String username, String password, Payment payment){
+		_id = id;
+		_username = username;
+		_password = password;
+		_payment = payment;
 	}
 
 	/** 
@@ -15,16 +18,16 @@ public class Customer {
 	* @param listing desired car listing
 	* @return newly created appointment, null if otherwise
 	*/
-	public Appointment makeAppointment(CarListing listing, String date){
-
+	public Appointment makeAppointment(Listing listing, String date){
+		return null;
 	}
 
 	/**
 	* Purchase a car 
 	*	@param listing desired car listing
 	*/
-	public Transaction purchaseCar(CarListing listing){
-
+	public Transaction purchaseCar(Listing listing){
+		return null;
 	}
 
 	/**
@@ -32,8 +35,8 @@ public class Customer {
 	* @param searchRequest 
 	* @return array of matching cars
 	*/
-	public CarListing[] search(SearchRequest request){
-
+	public Listing[] search(SearchRequest request){
+		return null;
 	}		
 	
 }

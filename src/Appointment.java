@@ -1,6 +1,5 @@
 public class Appointment {
-	private String _date;
-	private String _time;
+	private Date _date;
 	private	int _employeeID;
 	private int _customerID;
 	private int _listingID;
@@ -12,8 +11,13 @@ public class Appointment {
 		CLOSED
 	}
 
-	Appointment(...){
-		// TODO
+	Appointment(int id, Date date, int employeeID, int customerID, int listingID, ){
+		_id = id;
+		_date = date;
+		_employeeID = employeeID;
+		_customerID = customerID;
+		_listingID = listingID;
+		_status = Status.OPEN;
 	}
 
 	/**
@@ -21,7 +25,7 @@ public class Appointment {
 	* @return true if appointment is canceled
 	*/	
 	public boolean cancelApointment(){
-		_appointment = CLOSED;
+		_status = Satus.CLOSED;
 		return true;
 	}	
 	
