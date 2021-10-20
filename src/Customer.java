@@ -2,15 +2,20 @@ public class Customer {
 	private String _name;
 	private String _address;
 	private int _id;
-	private String username;
-	private String password;
-	private Payment payment;
+	private String _username;
+	private String _password;
+	private Payment _payment;
 
 	Customer(int id, String username, String password, Payment payment){
 		_id = id;
 		_username = username;
 		_password = password;
 		_payment = payment;
+	}
+
+	@Override
+	public String toString(){
+		return _username + ", " + _password;
 	}
 
 	/** 
@@ -37,6 +42,10 @@ public class Customer {
 	*/
 	public Listing[] search(SearchRequest request){
 		return null;
-	}		
+	}
+
+	public int getID(){
+		return _id;
+	}
 	
 }

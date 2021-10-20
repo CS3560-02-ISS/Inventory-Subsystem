@@ -4,39 +4,74 @@ public class Listing {
 	private String _make;
 	private String _model;
 	private int _year;
-	private int _stockCount;
+	private int _stockAmount;
 	private int _id;
 	private int _appointmentCount;
-	private HashMap<String, Vehicle> _stock;
+	private double _price;
+
+	// temporary storage method
+	private HashMap<Integer, Vehicle> _stock;
+	private int _stockCount;
 
 	/**
 	 * Create new listing.
 	 * Note: Every listing starts with a zero stock.
 	 * Stock must be added to a listing via the addStock() method.
 	 */
-	Listing(int id, String make, String model, int year){
+	Listing(int id, String make, String model, int year, double price){
 		_id = id;
 		_make = make;
 		_model = model;
-		_stockCount = 0;
+		_stockAmount = 0;
 		_appointmentCount = 0;
+		_stockCount = 0;
 		_stock = new HashMap<>();
+		_price = price;
+	}
+
+	public double getPrice(){
+		return _price;
+	}
+
+	public int getID(){
+		return _id;
+	}
+
+	public int getAmountOfStock(){
+		return _stockAmount;
 	}
 
 	/**
 	* Check current stock
-	* @return amount of stock
+	* @return all cars belonging to this listing
 	*/
-	public int getCurrentStock(){
-		return _stockCount;
+	public HashMap<Integer, Vehicle> getCurrentStock(){
+		return _stock;
 	}
 
 	/** 
 	* Add stock to the listing
 	* @return true if stock added successfully
 	*/
-	public boolean addStock(Car[] cars){
-		return false;
-	}	
+	public boolean addStock(Vehicle[] cars){
+		for(int c=0; c <cars.length; c++){
+			_stock.put(_stockCount, cars[c]);
+			_stockCount++;
+			_stockAmount++;
+		}
+		return true;
+	}
+
+	/**
+	 * Get the next available car for this listing
+	 * @return next vehicle, null if no cars are in stock
+	 */
+	public Vehicle nextCar(){
+		Vehicle v = null;
+		if(_stockAmount != 0){
+			v = _stock.remove(--_stockAmount);
+		}
+		return v;
+	}
 
 }

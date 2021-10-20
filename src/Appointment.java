@@ -1,9 +1,11 @@
+import java.util.Date;
+
 public class Appointment {
 	private Date _date;
 	private	int _employeeID;
 	private int _customerID;
 	private int _listingID;
-	private _id;
+	private int _id;
 	private Status _status;
 
 	public enum Status{
@@ -11,7 +13,7 @@ public class Appointment {
 		CLOSED
 	}
 
-	Appointment(int id, Date date, int employeeID, int customerID, int listingID, ){
+	Appointment(int id, Date date, int employeeID, int customerID, int listingID ){
 		_id = id;
 		_date = date;
 		_employeeID = employeeID;
@@ -25,7 +27,7 @@ public class Appointment {
 	* @return true if appointment is canceled
 	*/	
 	public boolean cancelApointment(){
-		_status = Satus.CLOSED;
+		_status = Status.CLOSED;
 		return true;
 	}	
 	

@@ -1,13 +1,13 @@
 import java.util.HashMap;
 import java.util.Date;
 
-public static class System {
+public class InventorySystem {
 
 	/* untill we have a database, I'm storing info into maps*/
-	private static HashMap<int, Customer> _customers = new HashMap<>();
-	private static HashMap<int, Employee> _employees = new HashMap<>();
-	private static HashMap<int, Lisitng> _listings = new HashMap<>();
-	private static HashMap<int, Transaction> _transaction = new HashMap<>();
+	private static HashMap<Integer, Customer> _customers = new HashMap<>();
+	private static HashMap<Integer, Employee> _employees = new HashMap<>();
+	private static HashMap<Integer, Listing> _listings = new HashMap<>();
+	private static HashMap<Integer, Transaction> _transactions = new HashMap<>();
 	private static int _customerCount = 0;
 	private static int _employeeCount = 0;
 	private static int _listingCount = 0;
@@ -26,9 +26,18 @@ public static class System {
 	*/
 	public static Customer createCustomer(String username, String password, Payment payment){
 		Customer customer = new Customer(_customerCount, username, password, payment);
+		storeCustomer(customer);
+		return customer;
+	}
+
+	/**
+	 * Store a customer into memory
+	 * @return true if operatiopn is succesfful
+	 * */
+	public static boolean storeCustomer(Customer customer){
 		_customers.put(_customerCount, customer);
 		_customerCount++;
-		return customer;
+		return true;
 	}
 
 	/**
@@ -37,9 +46,19 @@ public static class System {
 	*/
 	public static Employee createEmployee(String name, int id){
 		Employee employee = new Employee(id, name);
+		storeEmployee(employee);
+		return employee;
+	}
+
+	/**
+	 * Store an employee into memory
+	 * @param employee
+	 * @return true if operation is succesfful
+	 */
+	public static boolean storeEmployee(Employee employee){
 		_employees.put(_employeeCount, employee);
 		_employeeCount++;
-		return employee;
+		return true;
 	}
 
 	/**
@@ -49,11 +68,23 @@ public static class System {
 	* @return transaction, null if otherwise
 	*/
 	public static Transaction createTransaction(Customer customer, Listing listing, Date date){	
-		Transaction transaction = new Transaction(transactionCount, listing.getVin(), listing.getAmount(), date, customer.getID()); 
-		_transactions.put(transactionCount, transaction);
-		_transactionCount++;
+		Transaction transaction = new Transaction(_transactionCount, listing, date, customer.getID()); 
+		storeTransaction(transaction);
 		return transaction;
 	}
+
+	/**
+	 * Store a transaction into memory
+	 * @param transaction
+	 * @return true if operation successfull
+	 */
+
+	public static boolean storeTransaction(Transaction transaction){
+		_transactions.put(_transactionCount, transaction);
+		_transactionCount++;
+		return true;
+	}
+	
 
 	/**
 	 * Create new listing
@@ -62,26 +93,31 @@ public static class System {
 	 * @param year int car year
 	 * @return listing, null if otherwise
 	 */
-	public static Listing createListing(String make, String model, int year, int count){
-		Listing listing = new Listing(_listingCount, make, model, year);
-		_listings.put(_listingCount, listing);
-		_listingCount++;
+	public static Listing createListing(String make, String model, int year, double price){
+		Listing listing = new Listing(_listingCount, make, model, year, price);
+		storeListing(listing);
 		return listing;
 	}
 
-	public static HashMap<int, Customer> getCustomers(){
+	public static boolean storeListing(Listing listing){
+		_listings.put(_listingCount, listing);
+		_listingCount++;
+		return true;
+	}
+
+	public static HashMap<Integer, Customer> getCustomers(){
 		return _customers;	
 	}
 
-	public static HashMap<int, Employee> getEmployees(){
+	public static HashMap<Integer, Employee> getEmployees(){
 		return _employees;
 	}
 
-	public static HashMap<int, Transaction> getTransactions(){
-		return _trasactions;
+	public static HashMap<Integer, Transaction> getTransactions(){
+		return _transactions;
 	}
 
-	public static HashMap<int, Listing> getListings(){
+	public static HashMap<Integer, Listing> getListings(){
 		return _listings;
 	}
 
@@ -100,5 +136,5 @@ public static class System {
 	public static Listing getListing(int ID){
 		return _listings.get(ID);
 	}
-	
+}	
 	
