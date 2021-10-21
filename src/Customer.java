@@ -1,13 +1,11 @@
 public class Customer {
 	private String _name;
 	private String _address;
-	private int _id;
 	private String _username;
 	private String _password;
 	private Payment _payment;
 
-	Customer(int id, String username, String password, Payment payment){
-		_id = id;
+	Customer(String username, String password, Payment payment){
 		_username = username;
 		_password = password;
 		_payment = payment;
@@ -44,8 +42,4 @@ public class Customer {
 		return null;
 	}
 
-	public int getID(){
-		return _id;
-	}
-	
 }

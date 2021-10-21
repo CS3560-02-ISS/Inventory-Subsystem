@@ -25,7 +25,7 @@ public class InventorySystem {
 	* @return customer, null if unsuccessful
 	*/
 	public static Customer createCustomer(String username, String password, Payment payment){
-		Customer customer = new Customer(_customerCount, username, password, payment);
+		Customer customer = new Customer(username, password, payment);
 		storeCustomer(customer);
 		return customer;
 	}
@@ -44,8 +44,8 @@ public class InventorySystem {
 	* Create new employee and add to storage
 	* @return employee, null if unsuccessful
 	*/
-	public static Employee createEmployee(String name, int id){
-		Employee employee = new Employee(id, name);
+	public static Employee createEmployee(String name){
+		Employee employee = new Employee(name);
 		storeEmployee(employee);
 		return employee;
 	}
@@ -68,7 +68,7 @@ public class InventorySystem {
 	* @return transaction, null if otherwise
 	*/
 	public static Transaction createTransaction(Customer customer, Listing listing, Date date){	
-		Transaction transaction = new Transaction(_transactionCount, listing, date, customer.getID()); 
+		Transaction transaction = new Transaction(listing, date, customer); 
 		storeTransaction(transaction);
 		return transaction;
 	}
@@ -94,7 +94,7 @@ public class InventorySystem {
 	 * @return listing, null if otherwise
 	 */
 	public static Listing createListing(String make, String model, int year, double price){
-		Listing listing = new Listing(_listingCount, make, model, year, price);
+		Listing listing = new Listing(make, model, year, price);
 		storeListing(listing);
 		return listing;
 	}

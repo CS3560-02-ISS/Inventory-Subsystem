@@ -5,7 +5,6 @@ public class Listing {
 	private String _model;
 	private int _year;
 	private int _stockAmount;
-	private int _id;
 	private int _appointmentCount;
 	private double _price;
 
@@ -18,8 +17,7 @@ public class Listing {
 	 * Note: Every listing starts with a zero stock.
 	 * Stock must be added to a listing via the addStock() method.
 	 */
-	Listing(int id, String make, String model, int year, double price){
-		_id = id;
+	Listing(String make, String model, int year, double price){
 		_make = make;
 		_model = model;
 		_stockAmount = 0;
@@ -31,10 +29,6 @@ public class Listing {
 
 	public double getPrice(){
 		return _price;
-	}
-
-	public int getID(){
-		return _id;
 	}
 
 	public int getAmountOfStock(){

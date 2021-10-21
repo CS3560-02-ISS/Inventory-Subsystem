@@ -3,8 +3,7 @@ public class Employee {
 	private String _name;
 	private int _id;
 
-	Employee(int id, String name){
-		_id = id;
+	Employee(String name){
 		_name = name;
 	}
 	

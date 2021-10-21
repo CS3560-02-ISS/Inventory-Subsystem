@@ -11,9 +11,9 @@ public class ConsoleAPI {
 		}
 
 		Listing listing = InventorySystem.createListing("Mazda", "Miata", 1998, 5000.0);
-		Vehicle v1 = new Vehicle("abc123", listing.getID());
-		Vehicle v2 = new Vehicle("dfg456", listing.getID());
-		Vehicle v3 = new Vehicle("hjk789", listing.getID());
+		Vehicle v1 = new Vehicle("abc123");
+		Vehicle v2 = new Vehicle("dfg456");
+		Vehicle v3 = new Vehicle("hjk789");
 		Vehicle[] vehicles = {v1, v2, v3};
 		listing.addStock(vehicles);
 		HashMap<Integer, Vehicle> vehicleMap = listing.getCurrentStock();
@@ -32,6 +32,6 @@ public class ConsoleAPI {
 			Vehicle value = entry.getValue();
 			System.out.printf("%d, %s\n", key, value);
 		}
-		return;	
+		
 	}
 }

@@ -4,14 +4,12 @@ public class Transaction {
 	private Vehicle _vehicle;
 	private double _amount;
 	private Date _date;
-	private int _id;
-	private int _customerID;
+	private Customer _customer;
 	private int _employeeID;
 
-	Transaction(int id, Listing listing, Date date, int customerID ){
-		_id = id;
+	Transaction(Listing listing, Date date, Customer customer){
 		_date = date;
-		_customerID = customerID;
+		_customer = customer;
 		_vehicle = listing.nextCar();
 		_amount = listing.getPrice();
 
@@ -19,6 +17,6 @@ public class Transaction {
 
 	@Override
 	public String toString(){
-		return _vehicle.getVin() + ", " +  _amount + ", " +  _customerID + ", " +  _date;
+		return _vehicle.getVin() + ", " +  _amount + ", " +  _customer + ", " +  _date;
 	}
 }
