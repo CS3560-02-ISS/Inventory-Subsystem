@@ -1,6 +1,8 @@
 import java.util.HashMap;
+import java.util.Date;
 
 public class Listing {
+
 	private String _make;
 	private String _model;
 	private int _year;
@@ -24,28 +26,6 @@ public class Listing {
 		_appointmentCount = 0;
 		_stockCount = 0;
 		_stock = new HashMap<>();
-import java.util.Date;
-
-public class Transaction {
-	private Vehicle _vehicle;
-	private double _amount;
-	private Date _date;
-	private Customer _customer;
-	private int _employeeID;
-
-	Transaction(Listing listing, Date date, Customer customer){
-		_date = date;
-		_customer = customer;
-		_vehicle = listing.nextCar();
-		_amount = listing.getPrice();
-
-	}
-
-	@Override
-	public String toString(){
-		return _vehicle.getVin() + ", " +  _amount + ", " +  _customer + ", " +  _date;
-	}
-}
 		_price = price;
 	}
 
