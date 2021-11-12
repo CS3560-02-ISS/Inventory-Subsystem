@@ -90,7 +90,8 @@
 					loadArchive();
 				}
 				function retrievePosts(){
-					fetch('https://jsonplaceholder.typicode.com/posts/?_limit=10')
+					
+					fetch('https://jsonplaceholder.typicode.com/posts/?_limit=2')
 					.then(response => response.json())
 					.then(posts => {
 						posts.forEach(post => {
@@ -122,9 +123,11 @@
 							doc_posts.appendChild(div);
 						});
 					})
+				
 					.catch(error => console.log(error));
 				}
-		
+				
+
 				function loadArchive(){
 				
 					let archive = document.getElementById("archive");
@@ -141,21 +144,21 @@
 						archive_div_h4.innerText = post["title"];
 						archive_div_p.innerText = post["userId"];
 						archive_div.append(archive_div_h4, archive_div_p)
-						archive.append(archive_div);
+						//archive.append(archive_div);
 						
-						let deleteButton = document.createElement("button");
-						deleteButton.addEventListener("click", function(){
-							var index = archivedPost.indexOf(post);
-							if(index > -1){
-								archivedPost.splice(index, 1);
-							}
-							window.sessionStorage.setItem("archivedPost", 
-											JSON.stringify(archivedPost));
-							loadArchive();
-						})
-						deleteButton.innerText = "Remove from Cart";
+						// let deleteButton = document.createElement("button");
+						// deleteButton.addEventListener("click", function(){
+						// 	var index = archivedPost.indexOf(post);
+						// 	if(index > -1){
+						// 		archivedPost.splice(index, 1);
+						// 	}
+						// 	window.sessionStorage.setItem("archivedPost", 
+						// 					JSON.stringify(archivedPost));
+						// 	loadArchive();
+						// })
+						// deleteButton.innerText = "Remove from Cart";
 		
-						archive_div.append(deleteButton);
+						// archive_div.append(deleteButton);
 					});
 				}
 		
