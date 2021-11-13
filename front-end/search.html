@@ -95,7 +95,11 @@
 										<label for="psw"><b>Max-Price</b></label>
 										<input type="text" placeholder="Enter Make" name="uname" required>
 
-										<p></p>
+										<p>
+											<!--<script>
+												alert("The product you searched for is not availabe")
+											</script>
+										</p> -->
 
 										
 										
@@ -104,8 +108,21 @@
 									<div id="posts">
 								
 										<button id="retrievePosts" onclick="retrievePosts()">Search Inventory!</button>
+									
+										
 									</div>
-								   
+									<p>
+
+
+										<!-- empty space -->
+									</p>
+								    <h2>Results</h2>
+									<h3>Honda Civic </h3>
+									<h4>2021</h4>
+									<h4>Hatchback</h4>
+									<h4>Black</h4>
+									<h4>$20,000</h4>
+									<img src="https://s3.us-east-2.amazonaws.com/dealer-inspire-vps-vehicle-images/11000655/SHHFK7H45MU233138/9b20c0a2b36abae1b1ec489908b25a31.png" alt="Picture">
 								</section>
 							</div>
 						</div>
@@ -121,6 +138,7 @@
 								
 							</div>
 						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -131,7 +149,8 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script>
+			
+			<!--<script>
 				var archivedPost = [];
 				window.onload = function(){
 					var session =window.sessionStorage;
@@ -167,8 +186,11 @@
 									window.sessionStorage.setItem("archivedPost", 
 											JSON.stringify(archivedPost));
 									loadArchive();
+
 								}
+								
 							})
+							
 							div.append(button2);
 		
 							let doc_posts = document.getElementById("posts");
@@ -214,6 +236,7 @@
 					});
 				}
 		
-			</script>
+			</script> -->
+			
 	</body>
 </html>
