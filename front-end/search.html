@@ -26,12 +26,16 @@
 												<li><a href="index.html">Home</a></li>
 												<li class="current_page_item"><a href="left-sidebar.html">Search</a></li>
 												<li><a href="cart.html">Cart</a></li>
-												<li><a href="account.html">Account</a></li>
+												
 											</ul>
 										</nav>
 
 								</div>
 							</header>
+
+
+		</label>
+	  </div>
 
 					</div>
 				</div>
@@ -42,11 +46,99 @@
 							<div class="row">
 								<section class="box article-list">																				
 									<h2>Search</h2>
-									<article class="box excerpt">
-											<div>
-												
-											</div>
-										</article>
+
+									<div class="container">
+										<label for="uname"><b>Make</b></label>
+										<input type="text" placeholder="Enter Make" name="uname" required>
+
+										</div>
+
+										<div class="container">
+											<p></p>
+								  
+										<label for="psw"><b>Model</b></label>
+										<input type="text" placeholder="Enter Make" name="uname" required>
+
+										</div>
+
+										<div class="container">
+
+											<p></p>
+
+										<label for="psw"><b>Year</b></label>
+										<input type="text" placeholder="Enter Make" name="uname" required>
+
+										</div>
+
+										<div class="container">
+
+											<p></p>
+
+										<label for="psw"><b>Color</b></label>
+										<input type="text" placeholder="Enter Color" name="uname" required>
+
+										</div>
+
+										<div class="container">
+
+											<p></p>
+
+										<label for="psw"><b>Min-Price</b></label>
+										<input type="text" placeholder="Enter Min-Price" name="uname" required>
+
+										</div>
+
+										<div class="container">
+
+											<p></p>
+
+										<label for="psw"><b>Max-Price</b></label>
+										<input type="text" placeholder="Enter Max-Price" name="uname" required>
+
+										<p>
+											<!--<script>
+												alert("The product you searched for is not availabe")
+											</script>
+										</p> -->
+
+										
+										
+										
+										  <input type="checkbox" > 
+									<div id="posts">
+								
+										<button id="retrievePosts" onclick="retrievePosts()">Search Inventory!</button>
+<<<<<<< Updated upstream
+									
+										
+									</div>
+=======
+<<<<<<< HEAD
+
+
+									</div>
+								    
+=======
+									
+										
+									</div>
+>>>>>>> Stashed changes
+									<p>
+
+
+										<!-- empty space -->
+									</p>
+								    <h2>Results</h2>
+									<h3>Honda Civic </h3>
+									<h4>2021</h4>
+									<h4>Hatchback</h4>
+									<h4>Black</h4>
+									<h4>$20,000</h4>
+									<img src="https://s3.us-east-2.amazonaws.com/dealer-inspire-vps-vehicle-images/11000655/SHHFK7H45MU233138/9b20c0a2b36abae1b1ec489908b25a31.png" alt="Picture">
+<<<<<<< Updated upstream
+=======
+>>>>>>> ce904c50607f8dbe98c50d3b97b19d0cec02a4f0
+>>>>>>> Stashed changes
 								</section>
 							</div>
 						</div>
@@ -59,38 +151,10 @@
 					<div class="inner">
 						<div class="container">
 							<div class="row">
-								<section class="box article-list">																				
-									<h2>Results</h2>
-										<article class="box excerpt">
-											<a href="#" class="image left"><img src="images/pic04.jpg" alt="" /></a>
-											<div>
-												<header>
-													<span class="date"></span>
-													<h3><a href="#">Honda Civic Hatchback </a></h3>
-												</header>
-												<p>Color: Grey</p>
-												<p>Year: 2021</p>
-												<p>Price: 25000</p>
-												<p>VIN: 1234567890</p>
-												<a href="index.html">Add to cart</a>
-											</div>
-										</article>
-										<article class="box excerpt">
-											<a href="#" class="image left"><img src="images/pic05.jpg" alt="" /></a>
-											<div>
-												<header>
-													<span class="date">July 18</span>
-													<h3><a href="#">Adventuring with a knee injury</a></h3>
-												</header>
-												<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus
-												semper mod quisturpis nisi consequat etiam lorem. Phasellus quam turpis,
-												feugiat et sit amet ornare in, hendrerit in lectus semper mod quis eget mi dolore.</p>
-											</div>
-										</article>
-										
-								</section>
+								
 							</div>
 						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -101,5 +165,119 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+<<<<<<< Updated upstream
+			
+			<!--<script>
+=======
+<<<<<<< HEAD
+
+
+			
+			<script>
+=======
+			
+			<!--<script>
+>>>>>>> ce904c50607f8dbe98c50d3b97b19d0cec02a4f0
+>>>>>>> Stashed changes
+				var archivedPost = [];
+				window.onload = function(){
+					var session =window.sessionStorage;
+					archivedPost = JSON.parse(sessionStorage.getItem('archivedPost'))
+					if(archivedPost == null){
+						archivedPost = [];
+					}
+					loadArchive();
+				}
+				
+				function retrievePosts(){
+					
+					fetch('https://jsonplaceholder.typicode.com/posts/?_limit=2')
+					.then(response => response.json())
+					.then(posts => {
+						posts.forEach(post => {
+							//console.log(post);
+							let div = document.createElement("div");
+							div.setAttribute("class", "post");
+							let div_h3 = document.createElement("h3");
+							div_h3.setAttribute("class", "postTitle");
+							let div_p = document.createElement("p");
+							div_p.setAttribute("class", "postTitle")
+							div.setAttribute("id", post["id"]);
+							div_h3.innerText = post["title"];
+							div_p.innerText = post["body"];
+							div.append(div_h3, div_p);
+		
+							let button2 = document.createElement("button");
+							button2.innerText = "Add to Cart"
+							button2.addEventListener("click", function(){
+								if(!archivedPost.includes(post)){
+									archivedPost.push(post);
+									window.sessionStorage.setItem("archivedPost", 
+											JSON.stringify(archivedPost));
+									loadArchive();
+
+								}
+								
+							})
+							
+							div.append(button2);
+		
+							let doc_posts = document.getElementById("posts");
+							doc_posts.appendChild(div);
+						});
+					})
+				
+					.catch(error => console.log(error));
+				}
+				
+
+
+				function loadArchive(){
+				
+					let archive = document.getElementById("archive");
+					while (archive.childNodes.length > 1) {
+						archive.removeChild(archive.lastChild);
+					}
+					archivedPost.forEach(post =>{
+						let archive_div = document.createElement("div");
+						archive_div.setAttribute("class", "archiveEntry");
+						let archive_div_h4 = document.createElement("h4");
+						let archive_div_p = document.createElement("p");
+						archive_div_h4.setAttribute("class", "title");
+						archive_div_p.setAttribute("class", "author");
+						archive_div_h4.innerText = post["title"];
+						archive_div_p.innerText = post["userId"];
+						archive_div.append(archive_div_h4, archive_div_p)
+						//archive.append(archive_div);
+						
+						// let deleteButton = document.createElement("button");
+						// deleteButton.addEventListener("click", function(){
+						// 	var index = archivedPost.indexOf(post);
+						// 	if(index > -1){
+						// 		archivedPost.splice(index, 1);
+						// 	}
+						// 	window.sessionStorage.setItem("archivedPost", 
+						// 					JSON.stringify(archivedPost));
+						// 	loadArchive();
+						// })
+						// deleteButton.innerText = "Remove from Cart";
+		
+						// archive_div.append(deleteButton);
+					});
+				}
+<<<<<<< Updated upstream
+		
+			</script> -->
+			
+=======
+<<<<<<< HEAD
+		    
+			</script>
+=======
+		
+			</script> -->
+			
+>>>>>>> ce904c50607f8dbe98c50d3b97b19d0cec02a4f0
+>>>>>>> Stashed changes
 	</body>
 </html>
