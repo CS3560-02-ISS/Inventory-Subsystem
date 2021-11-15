@@ -9,8 +9,23 @@ var express = require('express'),
 // GET
 router.get('/listings', async function(req, res) {
     res.setHeader('content-type', 'application/json');
+    let make = "make";
+    let model = "model";
+    let year = "year";
+    if(req.query["make"]){
+        make = "\"" + req.query["make"] + "\"";
+    }
+    if(req.query["model"]){
+        model = "\"" + req.query["model"] + "\"";
+    }
+    if(req.query["year"]){
+        year = req.query["year"];
+    }
     try {
-        const result = await db.pool.query("select * from listings");
+        const result = await db.pool.query(`select * from listings where ` + 
+                                                `make = ${make} AND ` + 
+                                                `model = ${model} AND ` + 
+                                                `year = ${year}`);
         res.send(JSON.stringify(result));
     } catch (err) {
         throw err;
