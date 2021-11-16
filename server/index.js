@@ -7,6 +7,14 @@ var carRoutes = require("./routes/cars");
 var transactionRotues = require("./routes/transactions");
 var router = express.Router();
 
+const api_key = "R9LR0E7KDQ9ZV7P1VOUFVRLYQ8YI";
+
+router.use(function(req, res, next){
+    if(req.query["key"] != api_key){
+        res.send("Cannot use api without propper a key");
+    }
+    next();
+});
 
 router.use(function logActivity( req, res, next){
     var date = new Date().toUTCString();
