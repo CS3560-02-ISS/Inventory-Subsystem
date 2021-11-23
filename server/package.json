@@ -4,11 +4,16 @@
   "description": "sample server",
   "main": "index.js",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "hash": "^0.2.1",
     "mariadb": "^2.5.5",
+    "path": "^0.12.7",
+    "pbkdf2-password": "^1.2.1",
     "todo": "^1.1.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

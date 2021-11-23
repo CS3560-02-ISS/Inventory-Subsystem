@@ -6,8 +6,9 @@ CREATE TABLE customers(
 	customerName 		VARCHAR(30) NOT NULL,
 	customerAddress 	VARCHAR(50) NOT NULL,
 	customerUsername	VARCHAR(30) NOT NULL,
-	customerPassword	VARCHAR(30) NOT NULL,
-	PRIMARY KEY(customer_id)
+	customerPassword 	TEXT,
+	PRIMARY KEY(customer_id),
+	UNIQUE(customerUsername)
 );
 
 CREATE TABLE employees(
@@ -33,7 +34,9 @@ CREATE TABLE cars(
 	vin			VARCHAR(17) NOT NULL,
 	color		VARCHAR(20) NOT NULL,
 	PRIMARY KEY(stock_id),
-	FOREIGN KEY(listing_id) REFERENCES listings (listing_id)
+	FOREIGN KEY(listing_id) REFERENCES listings (listing_id),
+	UNIQUE(vin)
+);
 );
 
 CREATE TABLE transactions(

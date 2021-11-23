@@ -1,26 +1,5 @@
 USE iss;
 
-INSERT INTO customers (
-    customerName, 
-    customerAddress,
-    customerUsername,
-    customerPassword
-) 
-VALUES 
-    ('rob', '5428 Washington', 'robi', 'robiawesome'),          
-    ('jim', '2935 Lincoln', 'jimbo', 'password123'),            
-    ('stanley', '9980 Rose', 'yelnats', 'madamzaroni'),         
-    ('kevin', '3342 Budd', 'theKiller', 'gotteeem'),            
-    ('george', '5113 Chevy', 'jungleGeorge', 'oohoohaahaah');   
-
-INSERT INTO employees (
-    employeeName,
-    employeeUsername,
-    employeePassword
-) 
-VALUES 
-    ('mav', 'mavobt', 'mavcity'),               
-    ('pong', 'pingpong', 'pongoffurry');   
 
 
 INSERT INTO listings (
