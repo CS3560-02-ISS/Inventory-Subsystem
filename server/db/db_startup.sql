@@ -1,6 +1,11 @@
 CREATE DATABASE iss;
 USE iss;
 
+CREATE USER 'issTeam'@'localhost' IDENTIFIED BY 'cs3560';
+GRANT ALL PRIVILEGES ON *.* TO 'issTeam'@'localhost';
+
+FLUSH PRIVILEGES;
+
 CREATE TABLE customers( 
 	customer_id 		INT NOT NULL AUTO_INCREMENT,
 	customerName 		VARCHAR(30) NOT NULL,
@@ -36,7 +41,6 @@ CREATE TABLE cars(
 	PRIMARY KEY(stock_id),
 	FOREIGN KEY(listing_id) REFERENCES listings (listing_id),
 	UNIQUE(vin)
-);
 );
 
 CREATE TABLE transactions(
