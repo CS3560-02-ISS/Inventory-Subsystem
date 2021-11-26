@@ -39,29 +39,35 @@ router.get('/logout', function(req, res, next){
 // POST - attempt to login
 router.post('/login', async function(req, res){
   res.setHeader('content-type', 'application/json');
-    const username = req.body.customerUsername;
-    const password = req.body.customerPassword;
-    try{
-        const result = await db.pool.query(`select customerPassword from customers where customerUsername = \"${username}\"`);
-        const hash = result[0]["customerPassword"];
-        bcrypt.compare(password, hash, function(err, result) {
-          if(result){
-            res.cookie('username', username, {maxAge: 360000});
-            res.cookie('auth', true, {maxAge: 360000});
-            res.redirect("/index.html");
+  const username = req.body.customereUsername;
+  const password = req.body.customerPassword;
+  try{
+      const result = await db.pool.query(`select customerPassword from customers where customerUsername = \"${username}\"`);
+      const hash = result[0]["employeePassword"];
+      bcrypt.compare(password, hash, function(err, result) {
+        if(result){
+          res.cookie('username', username, {maxAge: 360000});
+          res.cookie('auth', true, {maxAge: 360000});
+          var login = {
+            "attempt": true
           }
-          else{
-            var login = {
-              "attempt": false
-            }
-            res.send(JSON.stringify(login));
+          res.send(JSON.stringify(login));
+        }
+        else{
+          var login = {
+            "attempt": false
           }
-        });
+          res.send(JSON.stringify(login));
+        }
+      });
+  }
+  catch (err){
+    var login = {
+      "attempt": 'unknown'
     }
-    catch (err){
-      res.send("505");
-      throw err;
-    }
+    res.send(JSON.stringify(login));
+    throw err;
+  }
 });
 
 // POST - attempt to login
