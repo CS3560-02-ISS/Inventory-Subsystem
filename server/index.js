@@ -6,22 +6,19 @@ var listingRotues = require("./routes/listings");
 var carRoutes = require("./routes/cars");
 var transactionRotues = require("./routes/transactions");
 var customerRoutes = require("./routes/customers");
+var employeeRoutes = require("./routes/employees")
 var loginRoutes = require("./routes/login");
 var router = express.Router();
+
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
-var session = require('express-session');
 
+const cors = require('cors');
+app.use(cors({
+    origin: '*'
+}));
 
-/*const api_key = "R9LR0E7KDQ9ZV7P1VOUFVRLYQ8YI";
-
-router.use(function(req, res, next){
-    if(req.query["key"] != api_key && req.path.includes('/api')){
-        res.send("Cannot use api without propper a key");
-    }
-    next();
-});*/
 
 router.use(function logActivity( req, res, next){
     var date = new Date().toUTCString();
@@ -31,14 +28,15 @@ router.use(function logActivity( req, res, next){
     console.log("\t\t", req.body);
     next();
 });
-app.use(router);
 app.use(express.json());
+app.use(router);
 app.use(loginRoutes);
 app.use(express.static('public'));
 app.use(listingRotues);
 app.use(carRoutes);
 app.use(transactionRotues);
 app.use(customerRoutes);
+app.use(employeeRoutes);
 
 
 app.listen(PORT, function(err){

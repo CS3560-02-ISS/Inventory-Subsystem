@@ -21,7 +21,7 @@ CREATE TABLE employees(
 	employeeName	VARCHAR(20) NOT NULL,
 	employeeUsername VARCHAR(20) NOT NULL,
 	employeeAddress  VARCHAR(50) NOT NULL,
-	employeePassword VARCHAR(20) NOT NULL,
+	employeePassword TEXT,
 	PRIMARY KEY (employee_id),
 	UNIQUE(employeeUsername)
 );

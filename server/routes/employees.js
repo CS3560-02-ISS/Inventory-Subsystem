@@ -7,13 +7,14 @@ var employeeFactory = require("../models/employee");
 
 const saltRounds = 10;
 
-// POST - create customer
+// POST - create employee
 router.post("/employees", async function (req, res){
     res.setHeader('content-type', 'application/json');
     try{
-        var employee = employeeFactory.customerFromJson(req.body);
-        bcrypt.hash(employee.customerPassword, saltRounds, async function(err, hash) {
-          const result = await db.pool.query(`insert into employees (employeeName, employeeAddress, employeeUsername, employeePassword) values (\"${employee.customerName}\", \"${employee.customerAddress}\", \"${employee.customerUsername}\",\"${hash}\")`)
+        var employee = employeeFactory.employeeFromJson(req.body);
+        
+        bcrypt.hash(employee.employeePassword, saltRounds, async function(err, hash) {
+          const result = await db.pool.query(`insert into employees (employeeName, employeeAddress, employeeUsername, employeePassword) values (\"${employee.employeeName}\", \"${employee.employeeAddress}\", \"${employee.employeeUsername}\",\"${hash}\")`)
           .catch(err => {res.send("Username taken"); throw err;});
           res.send(result);
         });
@@ -28,7 +29,8 @@ router.post("/employees", async function (req, res){
 router.get("/employees", async function (req, res){
     res.setHeader('content-type', 'application/json');
     try{
-        const result = await db.pool.query(`select * from employees`);
+        const result = await db.pool.query(`select employee_id, employeeName, employeeAddress from employees`);
+        console.log("asdfasd")
         res.send(result);
     } catch (err) {
         res.send(505);
