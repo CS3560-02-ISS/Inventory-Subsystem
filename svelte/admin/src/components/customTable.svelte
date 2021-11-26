@@ -2,6 +2,14 @@
     export let headers;
     export let entries;
     export let resource;
+
+    const deleteEmployee = async function(id) {
+        const url = `http://localhost:8080/employees/${id}`;
+        const res = await fetch(url, {
+            method: "DELETE",
+        })
+    }
+
 </script>
 
 <table>

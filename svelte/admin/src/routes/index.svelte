@@ -25,6 +25,29 @@
 		showModal = !showModal;
 	};
 
+    const createNewEmployee = async function () {
+        const url = "http://localhost:8080/employees";
+        const body = {
+            employeeName: fname,
+            employeeAddress: address,
+            employeeUsername: username,
+            employeePassword: password
+        }
+        const res = await fetch(url, {
+            method: "POST",
+            body: JSON.stringify(body),
+        })
+        const data = await res.json();
+        const id = data.insertId;
+        employees = [...employees, {
+            Name: fname,
+            Address: address,
+            Id: id,
+        }]
+        toggleModal();
+
+    }
+
     let fname, address, username, password, confirm;
     let validForm = true;
 
@@ -56,7 +79,7 @@
             <div class="header">
                 <button class="cancel" on:click={toggleModal}>Cancel</button>
                 <h1>New Employee</h1>
-                <button class="done" disabled={validForm}>Done</button>
+                <button class="done" disabled={validForm} on:click={createNewEmployee}>Done</button>
             </div>
             <form>
                 <input type="text" placeholder="First Last" bind:value={fname}>

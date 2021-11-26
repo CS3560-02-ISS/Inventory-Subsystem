@@ -17,19 +17,18 @@ router.use('/cart.html', function(req, res, next) {
     }
 });
 
-
+/*
 router.use("/admin/*", function(req, res, next){
   console.log("Cookies: ", req.cookies);
   if(Object.keys(req.cookies).length != 0){
     if(req.cookies.adminAuth == 'true'){
         next();
-        console.log("asdfa")
     }
   }
   else{
     res.redirect("/index.html");
   }
-})
+})*/
 
 router.get('/logout', function(req, res, next){
     res.clearCookie("username");
