@@ -46,7 +46,7 @@
 							<div class="row">
 								<section class="box article-list">																				
 									<h2>Search</h2>
-
+											<!-- empty space 
 									<div class="container">
 										<label for="uname"><b>Make</b></label>
 										<input type="text" placeholder="Enter Make" name="uname" required>
@@ -111,10 +111,11 @@
 									
 										
 									</div>
+									<!--
 									<p>
 
 
-										<!-- empty space -->
+								
 									</p>
 								    <h2>Results</h2>
 									<h3>Honda Civic </h3>
@@ -123,6 +124,7 @@
 									<h4>Black</h4>
 									<h4>$20,000</h4>
 									<img src="https://s3.us-east-2.amazonaws.com/dealer-inspire-vps-vehicle-images/11000655/SHHFK7H45MU233138/9b20c0a2b36abae1b1ec489908b25a31.png" alt="Picture">
+									-->
 								</section>
 							</div>
 						</div>
@@ -150,7 +152,7 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			
-			<!--<script>
+			<script>
 				var archivedPost = [];
 				window.onload = function(){
 					var session =window.sessionStorage;
@@ -162,7 +164,7 @@
 				}
 				function retrievePosts(){
 					
-					fetch('https://jsonplaceholder.typicode.com/posts/?_limit=2')
+					fetch('http://localhost:8080/cars')
 					.then(response => response.json())
 					.then(posts => {
 						posts.forEach(post => {
@@ -236,7 +238,7 @@
 					});
 				}
 		
-			</script> -->
+			</script> 
 			
 	</body>
 </html>
