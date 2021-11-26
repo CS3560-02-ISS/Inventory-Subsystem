@@ -10,7 +10,7 @@ class Employee {
 }
 
 function employeeFromJson(json) {
-    return new CustoEmployeemer(json.employeeName, json.employeeAddress, json.employeeUsername, json.employeePassword);
+    return new Employee(json.employeeName, json.employeeAddress, json.employeeUsername, json.employeePassword);
 
 }
 
