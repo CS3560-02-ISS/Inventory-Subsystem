@@ -13,19 +13,24 @@ router.get('/appointments', async function(req, res) {
     let customer_id = "customer_id";
     let listing_id = "listing_id";
     let employee_id = "employee_id";
-    if(req.query["customer_id"] != -1){
+    let date = "date";
+    if(req.query["customer_id"]){
         customer_id = req.query["customer_id"] ;
     }
     if(req.query["listing_id"]){
         listing_id = req.query["listing_id"] ;
     }
-    if(req.query["employee_id"] != -1){
+    if(req.query["employee_id"]){
         employee_id = req.query["employee_id"];
     }
+    if(req.query["date"]){
+        date = req.query["date"];
+    }
     try {
-        const result = await db.pool.query(`select * from transactions where ` + 
+        const result = await db.pool.query(`select * from appointments where ` + 
                                                 `customer_id = ${customer_id} AND ` + 
                                                 `listing_id = ${listing_id} AND ` + 
+                                                `date = ${date} AND ` + 
                                                 `employee_id = ${employee_id}`);
         res.send(JSON.stringify(result));
     } catch (err) {
@@ -50,7 +55,7 @@ router.post("/appointments", async function (req, res){
     res.setHeader('content-type', 'application/json');
     try{
         let appointment = appointmentFactory.appointmentFromJson(req.body);
-        const result = await db.pool.query(`insert into appointments (listing_id, customer_id, employee_id) values (${appointment.listing_id}, ${appointment.customer_id}, ${appointment.employee_id})`);
+        const result = await db.pool.query(`insert into appointments (listing_id, customer_id, employee_id, date) values (${appointment.listing_id}, ${appointment.customer_id}, ${appointment.employee_id}, \"${appointment.date}\")`);
         res.send(result);
     } catch (err) {
         throw err;

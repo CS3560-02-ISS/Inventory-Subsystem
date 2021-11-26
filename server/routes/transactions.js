@@ -10,10 +10,14 @@ var transactionFactory = require("../models/transaction");
 router.get('/transactions', async function(req, res) {
     res.setHeader('content-type', 'application/json');
     let customer_id = "customer_id";
+    let employee_id = "employee_id";
     let stock_id = "stock_id";
     let transactionDate = "transactionDate";
     if(req.query["customer_id"]){
         customer_id = req.query["customer_id"] ;
+    }
+    if(req.query["employee_id"]){
+        employee_id = req.query["employee_id"] ;
     }
     if(req.query["stock_id"]){
         stock_id = req.query["stock_id"] ;
@@ -24,6 +28,7 @@ router.get('/transactions', async function(req, res) {
     try {
         const result = await db.pool.query(`select * from transactions where ` + 
                                                 `customer_id = ${customer_id} AND ` + 
+                                                `employee_id = ${employee_id} AND ` + 
                                                 `stock_id = ${stock_id} AND ` + 
                                                 `transactionDate = ${transactionDate}`);
         res.send(JSON.stringify(result));

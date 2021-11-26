@@ -8,6 +8,7 @@ var transactionRotues = require("./routes/transactions");
 var customerRoutes = require("./routes/customers");
 var employeeRoutes = require("./routes/employees")
 var loginRoutes = require("./routes/login");
+var appointmentRoutes = require("./routes/appointments");
 var router = express.Router();
 
 var cookieParser = require('cookie-parser');
@@ -24,8 +25,7 @@ router.use(function logActivity( req, res, next){
     var date = new Date().toUTCString();
     console.log(`${date}: `);
     console.log(`\t\x1b[32m${req.method} ${req.path}\x1b[0m`);
-    console.log("\t\t", req.query);
-    console.log("\t\t", req.body);
+    console.log(req.query)
     next();
 });
 app.use(express.json());
@@ -33,6 +33,7 @@ app.use(router);
 app.use(loginRoutes);
 app.use(express.static('public'));
 app.use(listingRotues);
+app.use(appointmentRoutes);
 app.use(carRoutes);
 app.use(transactionRotues);
 app.use(customerRoutes);

@@ -30,7 +30,6 @@ router.get("/employees", async function (req, res){
     res.setHeader('content-type', 'application/json');
     try{
         const result = await db.pool.query(`select employee_id, employeeName, employeeAddress from employees`);
-        console.log(result);
         res.send(result);
     } catch (err) {
         res.send(505);
@@ -43,7 +42,7 @@ router.get("/employees/:employee_id", async function(req, res){
     res.setHeader('content-type', 'application/json');
     try{
         let employee_id = req.params["employee_id"];
-        const result = await db.pool.query(`select * from employees where employee_id = ${employee_id}`);
+        const result = await db.pool.query(`select employee_id, employeeName, employeeAddress, employeeUsername from employees where employee_id = ${employee_id}`);
         res.send(result);
     } catch (err) {
         throw err;
@@ -55,7 +54,7 @@ router.delete("/employees/:employee_id", async function(req, res){
     res.setHeader('content-type', 'application/json');
     try{
         let employee_id = req.params["employee_id"];
-        const result = await db.pool.query(`delete from employees where customer_id = ${employee_id}`);
+        const result = await db.pool.query(`delete from employees where employee_id = ${employee_id}`);
         res.send(result);
     } catch (err) {
         throw err;
