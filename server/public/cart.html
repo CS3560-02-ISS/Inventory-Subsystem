@@ -87,16 +87,22 @@
 					posts.forEach(post => {
 						//console.log(post);
 						let div = document.createElement("div");
-						div.setAttribute("class", "post");
-						let div_h3 = document.createElement("h3");
-						div_h3.setAttribute("class", "postTitle");
-						let div_p = document.createElement("p");
-						div_p.setAttribute("class", "postTitle")
-						div.setAttribute("id", post["id"]);
-						div_h3.innerText = post["title"];
-						div_p.innerText = post["body"];
-						div.append(div_h3, div_p);
-	
+							div.setAttribute("class", "post");
+							let div_h3 = document.createElement("h3");
+							div_h3.setAttribute("class", "postTitle");
+							let div_h4 = document.createElement("h4");
+							div_h4.setAttribute("class", "postTitle");
+							let div_h5 = document.createElement("h5");
+							div_h5.setAttribute("class", "postTitle");
+							let div_p = document.createElement("p");
+							div_p.setAttribute("class", "postTitle")
+							div.setAttribute("listing_id", post["listing_id"]);
+							div_h3.innerText = post["make"];
+							div_h4.innerText = post["model"];
+							div_h5.innerText = post["year"];
+							div_p.innerText = post["price"];
+							div.append(div_h3,div_h4,div_h5 ,div_p);
+		
 						let button2 = document.createElement("button");
 						button2.innerText = "addToArray"
 						button2.addEventListener("click", function(){
