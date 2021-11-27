@@ -48,11 +48,13 @@ CREATE TABLE cars(
 CREATE TABLE transactions(
 	transaction_id 	INT NOT NULL AUTO_INCREMENT,
 	customer_id	INT NOT NULL,
+	employee_id	INT,
 	stock_id	INT NOT NULL,
 	transactionDate DATE NOT NULL,
 	PRIMARY KEY(transaction_id),
 	FOREIGN KEY(customer_id) REFERENCES customers (customer_id),
-	FOREIGN KEY(stock_id) REFERENCES cars (stock_id)
+	FOREIGN KEY(stock_id) REFERENCES cars (stock_id),
+	FOREIGN KEY(employee_id) REFERENCES employees (employee_id)
 );
 
 
@@ -61,6 +63,7 @@ CREATE TABLE appointments(
 	listing_id	INT NOT NULL,
 	customer_id	INT NOT NULL,
 	employee_id	INT NOT NULL,
+	date 		TEXT NOT NULL,
 	PRIMARY KEY(appointment_id),
 	FOREIGN KEY(listing_id) REFERENCES listings (listing_id),
 	FOREIGN KEY(customer_id) REFERENCES customers (customer_id),

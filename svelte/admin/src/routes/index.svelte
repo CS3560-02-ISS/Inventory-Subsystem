@@ -27,15 +27,19 @@
 
     const createNewEmployee = async function () {
         const url = "http://localhost:8080/employees";
-        const body = {
+        const newEmployee = {
             employeeName: fname,
             employeeAddress: address,
             employeeUsername: username,
             employeePassword: password
         }
+        
         const res = await fetch(url, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
             method: "POST",
-            body: JSON.stringify(body),
+            body: JSON.stringify(newEmployee),
         })
         const data = await res.json();
         const id = data.insertId;
