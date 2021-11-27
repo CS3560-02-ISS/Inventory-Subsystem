@@ -39,7 +39,7 @@ router.get('/logout', function(req, res, next){
 // POST - attempt to login
 router.post('/login', async function(req, res){
   res.setHeader('content-type', 'application/json');
-  const username = req.body.customereUsername;
+  const username = req.body.customerUsername;
   const password = req.body.customerPassword;
   try{
       const result = await db.pool.query(`select customerPassword from customers where customerUsername = \"${username}\"`);
