@@ -50,7 +50,7 @@ CREATE TABLE transactions(
 	customer_id	INT NOT NULL,
 	employee_id	INT,
 	stock_id	INT NOT NULL,
-	transactionDate TEXT NOT NULL,
+	transactionDate DATE NOT NULL,
 	PRIMARY KEY(transaction_id),
 	FOREIGN KEY(customer_id) REFERENCES customers (customer_id),
 	FOREIGN KEY(stock_id) REFERENCES cars (stock_id),

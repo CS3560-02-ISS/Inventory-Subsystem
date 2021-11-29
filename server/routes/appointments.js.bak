@@ -56,7 +56,6 @@ router.post("/appointments", async function (req, res){
     try{
         let appointment = appointmentFactory.appointmentFromJson(req.body);
 		const r1 = await db.pool.query(`select count(*) from cars where listing_id = ${appointment.listing_id}`);
-		console.log(r1);
 		if(r1[0]["count(*)"] == 0){
 			res.send(JSON.stringify({affectedRows: 0}));
 		}
