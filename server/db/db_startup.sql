@@ -40,6 +40,7 @@ CREATE TABLE cars(
 	listing_id 	INT NOT NULL,
 	vin			VARCHAR(17) NOT NULL,
 	color		VARCHAR(20) NOT NULL,
+	sold 		BOOL NOT NULL,
 	PRIMARY KEY(stock_id),
 	FOREIGN KEY(listing_id) REFERENCES listings (listing_id),
 	UNIQUE(vin)

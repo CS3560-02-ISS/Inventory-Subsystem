@@ -72,7 +72,7 @@ router.post("/transactions", async function (req, res){
             return;
         }
 		const result = await db.pool.query(`insert into transactions (customer_id, stock_id, transactionDate, employee_id) values (${transaction.customer_id}, ${transaction.stock_id}, \'${transaction.transactionDate}\', ${transaction.employee_id})`);
-		//const r1 = await db.pool.query(`delete from cars where stock_id = ${transaction.stock_id}`);
+		const r1 = await db.pool.query(`update cars set sold=TRUE where stock_id = ${transaction.stock_id}`);
         res.send(result);
     } catch (err) {
         throw err;

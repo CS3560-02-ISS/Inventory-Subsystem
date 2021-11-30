@@ -49,7 +49,7 @@ router.get('/listings/:listing_id/cars', async function(req, res){
     res.setHeader('content-type', 'application/json');
     try{
         let listing_id = req.params["listing_id"];
-        const result = await db.pool.query(`select * from cars where listing_id = ${listing_id}`);
+        const result = await db.pool.query(`select * from cars where listing_id = ${listing_id} AND sold=FALSE`);
         res.send(result);
     } catch (err) {
         throw err;

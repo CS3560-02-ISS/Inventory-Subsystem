@@ -2,7 +2,6 @@
     export let headers;
     export let entries;
     export let resource;
-	export let clickable = true;
 
     const deleteEmployee = async function(id) {
         const url = `http://localhost:8080/employees/${id}`;

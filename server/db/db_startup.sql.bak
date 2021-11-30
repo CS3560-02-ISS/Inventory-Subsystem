@@ -40,6 +40,7 @@ CREATE TABLE cars(
 	listing_id 	INT NOT NULL,
 	vin			VARCHAR(17) NOT NULL,
 	color		VARCHAR(20) NOT NULL,
+	sold 		BOOL NOT NULL
 	PRIMARY KEY(stock_id),
 	FOREIGN KEY(listing_id) REFERENCES listings (listing_id),
 	UNIQUE(vin)
@@ -50,7 +51,7 @@ CREATE TABLE transactions(
 	customer_id	INT NOT NULL,
 	employee_id	INT,
 	stock_id	INT NOT NULL,
-	transactionDate DATE NOT NULL,
+	transactionDate TEXT NOT NULL,
 	PRIMARY KEY(transaction_id),
 	FOREIGN KEY(customer_id) REFERENCES customers (customer_id),
 	FOREIGN KEY(stock_id) REFERENCES cars (stock_id),
