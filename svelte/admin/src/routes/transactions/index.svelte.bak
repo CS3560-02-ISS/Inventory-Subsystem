@@ -1,39 +1,40 @@
 <script context="module">
     export async function load({page}) {
-        const url = 'http://localhost:8080/listings';
+        const url = 'http://localhost:8080/transactions';
         const res = await fetch(url);
         const data = await res.json();
-        const loadedListings = data.map((listing) => {
+		console.log(data);
+        const loadedTransactions = data.map((transaction) => {
             return {
-                Make: listing.make,
-                Model: listing.model,
-                Year: listing.year,
-				Price: listing.price,
-				Id: listing.listing_id
+                Date: transaction.transactionDate,
+                Customer: transaction.customer_id,
+                Employee: transaction.employee_id,
+				Stock: transaction.stock_id,
+				Id: transaction.transaction_id
             }
         });
-        return {props: {listings: loadedListings}}
+        return {props: {transactions: loadedTransactions}}
     }
 </script>
 
 <script>
     import CustomTable from "../../components/customTable.svelte";
     import Modal from "../../components/modal.svelte"
-    export let listings;
-    let headers = ["Make", "Model", "Year", "Price", "Id"];
+    export let transactions;
+    let headers = ["Date", "Customer", "Employee", "Stock", "Id"];
 
 	let showModal = false;
 	const toggleModal = () => {
 		showModal = !showModal;
 	};
-	
-    const createNewListing = async function () {
-        const url = "http://localhost:8080/listings";
-        const newListing = {
-				make: make,
-                model: model,
-                year: year,
-				price: price
+
+    const createNewTransaction = async function () {
+        const url = "http://localhost:8080/transactions";
+        const newTransaction = {
+            transactionDate: transactionDate,
+            stock_id: stock_id,
+            customer_id: customer_id,
+            employee_id: employee_id
         }
         
         const res = await fetch(url, {
@@ -41,32 +42,32 @@
                 'Content-Type': 'application/json'
             },
             method: "POST",
-            body: JSON.stringify(newListing),
+            body: JSON.stringify(newTransaction),
         })
         const data = await res.json();
         const id = data.insertId;
-        listings = [...listings, {
-                Make: make,
-                Model: model,
-                Year: year,
-				Price: price,
+        transactions = [...transactions, {
+                Date: transactionDate,
+                Customer: customer_id,
+                Employee: employee_id,
+				Stock: stock_id,
 				Id: id
             }]
         toggleModal();
 
     }
 
-    let make, model, year, price;
-    let validForm = false;
+    let transactionDate, customer_id, employee_id, stock_id;
+    let validForm = true;
 
     $:{ 
-        if(make && model && year  && price ){
-            validForm = true;
-        }
-        else{
+
+        if(transactionDate && customer_id && stock_id && employee_id){
             validForm = false;
         }
-		console.log(validForm);
+        else{
+            validForm = true;
+        }
     }
 
 
@@ -75,25 +76,25 @@
 <slot><!-- optional fallback --></slot>
 <div class="wrapper">
     <main>
-        <h1>Listings</h1>
+        <h1>Transactions</h1>
         <div class="sub">
-            <p>List of all currently listings</p>
-            <button on:click={toggleModal}>Create new listing</button>
+            <p>List of all currently transactions</p>
+            <button on:click={toggleModal}>Create new transaction</button>
         </div>
-        {#if listings}
-                <CustomTable {headers} entries={listings} resource="listings"/>
+        {#if transactions}
+                <CustomTable {headers} entries={transactions} resource="transactions"/>
         {/if}
         <Modal {showModal} >
             <div class="header">
                 <button class="cancel" on:click={toggleModal}>Cancel</button>
                 <h1>New Transaction</h1>
-                <button class="done" disabled={!validForm} on:click={createNewListing}>Done</button>
+                <button class="done" disabled={validForm} on:click={createNewTransaction}>Done</button>
             </div>
             <form>
-                <input type="text" placeholder="Make" bind:value={make}>
-                <input type="text" placeholder="Model" bind:value={model}>
-                <input type="text" placeholder="Year" bind:value={year}> 
-                <input type="number" placeholder="Price" bind:value={price}> 
+                <input type="date" placeholder="Date" bind:value={transactionDate}>
+                <input type="text" placeholder="Customer" bind:value={customer_id}>
+                <input type="text" placeholder="Employee" bind:value={employee_id}> 
+                <input type="text" placeholder="Stock" bind:value={stock_id}> 
             </form>
         </Modal>
         
@@ -168,7 +169,6 @@
         border: none;
         border-bottom: 1px solid var(--clr-neutral-700);
         transition: border 200ms ease;
-		text-transform: lowercase;
     }
 
     form input:focus{

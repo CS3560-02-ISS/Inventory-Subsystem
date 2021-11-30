@@ -1,39 +1,39 @@
 <script context="module">
     export async function load({page}) {
-        const url = 'http://localhost:8080/listings';
+        const url = 'http://localhost:8080/appointments';
         const res = await fetch(url);
         const data = await res.json();
-        const loadedListings = data.map((listing) => {
+        const loadedAppointments= data.map((appointment) => {
             return {
-                Make: listing.make,
-                Model: listing.model,
-                Year: listing.year,
-				Price: listing.price,
-				Id: listing.listing_id
+                Date: appointment.date,
+                Customer: appointment.customer_id,
+                Employee: appointment.employee_id,
+				Listing: appointment.listing_id,
+				Id: appointment.appointment_id
             }
         });
-        return {props: {listings: loadedListings}}
+        return {props: {appointments: loadedAppointments}}
     }
 </script>
 
 <script>
     import CustomTable from "../../components/customTable.svelte";
     import Modal from "../../components/modal.svelte"
-    export let listings;
-    let headers = ["Make", "Model", "Year", "Price", "Id"];
+    export let appointments;
+    let headers = ["Date", "Customer", "Employee", "Listing", "Id"];
 
 	let showModal = false;
 	const toggleModal = () => {
 		showModal = !showModal;
 	};
-	
-    const createNewListing = async function () {
-        const url = "http://localhost:8080/listings";
-        const newListing = {
-				make: make,
-                model: model,
-                year: year,
-				price: price
+
+    const createNewAppointment = async function () {
+        const url = "http://localhost:8080/appointments";
+        const newAppointment = {
+            date: date,
+            listing_id: listing_id,
+            customer_id: customer_id,
+            employee_id: employee_id
         }
         
         const res = await fetch(url, {
@@ -41,32 +41,32 @@
                 'Content-Type': 'application/json'
             },
             method: "POST",
-            body: JSON.stringify(newListing),
+            body: JSON.stringify(newAppointment),
         })
         const data = await res.json();
         const id = data.insertId;
-        listings = [...listings, {
-                Make: make,
-                Model: model,
-                Year: year,
-				Price: price,
-				Id: id
+        appointments = [...appointments, {
+                Date: date,
+                Customer: customer_id,
+                Employee: employee_id,
+				Listing: listing_id,
+				Id: appointment_id
             }]
         toggleModal();
 
     }
 
-    let make, model, year, price;
-    let validForm = false;
+    let date, customer_id, employee_id, listing_id;
+    let validForm = true;
 
     $:{ 
-        if(make && model && year  && price ){
-            validForm = true;
-        }
-        else{
+
+        if(date && customer_id && listing_id){
             validForm = false;
         }
-		console.log(validForm);
+        else{
+            validForm = true;
+        }
     }
 
 
@@ -75,25 +75,25 @@
 <slot><!-- optional fallback --></slot>
 <div class="wrapper">
     <main>
-        <h1>Listings</h1>
+        <h1>Appointments</h1>
         <div class="sub">
-            <p>List of all currently listings</p>
-            <button on:click={toggleModal}>Create new listing</button>
+            <p>List of all currently open appointments</p>
+            <button on:click={toggleModal}>Create new appointment</button>
         </div>
-        {#if listings}
-                <CustomTable {headers} entries={listings} resource="listings"/>
+        {#if appointments}
+                <CustomTable {headers} entries={appointments} resource="appointments"/>
         {/if}
         <Modal {showModal} >
             <div class="header">
                 <button class="cancel" on:click={toggleModal}>Cancel</button>
-                <h1>New Transaction</h1>
-                <button class="done" disabled={!validForm} on:click={createNewListing}>Done</button>
+                <h1>New Appointment</h1>
+                <button class="done" disabled={validForm} on:click={createNewAppointment}>Done</button>
             </div>
             <form>
-                <input type="text" placeholder="Make" bind:value={make}>
-                <input type="text" placeholder="Model" bind:value={model}>
-                <input type="text" placeholder="Year" bind:value={year}> 
-                <input type="number" placeholder="Price" bind:value={price}> 
+                <input type="date" placeholder="Date" bind:value={date}>
+                <input type="text" placeholder="Customer" bind:value={customer_id}>
+                <input type="text" placeholder="Employee" bind:value={employee_id}> 
+                <input type="text" placeholder="Listing" bind:value={listing_id}> 
             </form>
         </Modal>
         
@@ -168,7 +168,6 @@
         border: none;
         border-bottom: 1px solid var(--clr-neutral-700);
         transition: border 200ms ease;
-		text-transform: lowercase;
     }
 
     form input:focus{

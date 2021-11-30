@@ -30,10 +30,10 @@
     const createNewListing = async function () {
         const url = "http://localhost:8080/listings";
         const newListing = {
-				make: make,
-                model: model,
-                year: year,
-				price: price
+				make: listing.make,
+                model: listing.model,
+                year: listing.year,
+				price: listing.price
         }
         
         const res = await fetch(url, {

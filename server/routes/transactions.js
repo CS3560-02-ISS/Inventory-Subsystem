@@ -71,8 +71,8 @@ router.post("/transactions", async function (req, res){
             res.send("Invalid date format: " + transaction.transactionDate + "\nExpected YYYY-MM-DD");
             return;
         }
-		const r1 = await db.pool.query(`delete from cars where stock_id = ${transaction.stock_id}`);
-        const result = await db.pool.query(`insert into transactions (customer_id, stock_id, transactionDate) values (${transaction.customer_id}, ${transaction.stock_id}, \'${transaction.transactionDate}\')`);
+		const result = await db.pool.query(`insert into transactions (customer_id, stock_id, transactionDate, employee_id) values (${transaction.customer_id}, ${transaction.stock_id}, \'${transaction.transactionDate}\', ${transaction.employee_id})`);
+		//const r1 = await db.pool.query(`delete from cars where stock_id = ${transaction.stock_id}`);
         res.send(result);
     } catch (err) {
         throw err;

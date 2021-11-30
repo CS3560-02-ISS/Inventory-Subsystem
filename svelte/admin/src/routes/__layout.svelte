@@ -14,9 +14,6 @@
             <li>
                 <a href="/transactions">Transactions</a>
             </li>
-            <li>
-                <a href="/customers">Customers</a>
-            </li>
         </ul>
     </nav>
     <slot></slot>

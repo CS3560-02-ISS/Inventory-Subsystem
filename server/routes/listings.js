@@ -72,7 +72,7 @@ router.get('/listings/:listing_id/cars/count', async function(req, res){
 
 
 // PUT
-router.put('/admin/listings/:listing_id', async function (req, res){
+router.put('/listings/:listing_id', async function (req, res){
     res.setHeader('content-type', 'application/json');
     let listing = listingFactory.createListing(req.body);
     try{    
@@ -90,7 +90,7 @@ router.put('/admin/listings/:listing_id', async function (req, res){
 });
 
 // POST
-router.post('/admin/listings', async function(req, res) {
+router.post('/listings', async function(req, res) {
     let listing = listingFactory.createListing(req.body);
     try {
         const result = await db.pool.query(`insert into listings (make, model, year, price) values (
@@ -103,7 +103,7 @@ router.post('/admin/listings', async function(req, res) {
 
 
 // DELETE
-router.delete('/admin/listings/:listing_id', async function(req, res){
+router.delete('/listings/:listing_id', async function(req, res){
     res.setHeader('content-type', 'application/json');
     try{
         let listing_id = req.params["listing_id"];
