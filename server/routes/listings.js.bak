@@ -62,7 +62,7 @@ router.get('/listings/:listing_id/cars/count', async function(req, res){
         let listing_id = req.params["listing_id"];
         const result = await db.pool.query(`select count(*) from cars where listing_id = ${listing_id}`);
 		var count = {
-			count: result[0][0] 
+			count: result[0]["count(*)"] 
 		}
 		res.send(JSON.stringify(count));
     } catch (err) {

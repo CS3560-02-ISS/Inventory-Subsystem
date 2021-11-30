@@ -55,14 +55,33 @@ router.post("/appointments", async function (req, res){
     res.setHeader('content-type', 'application/json');
     try{
         let appointment = appointmentFactory.appointmentFromJson(req.body);
+		console.log(`select count(*) from cars where listing_id = ${appointment.listing_id}`);
 		const r1 = await db.pool.query(`select count(*) from cars where listing_id = ${appointment.listing_id}`);
-		if(r1[0]["count(*)"] == 0){
+		console.log(r1[0]["count(*)"])		if(r1[0]["count(*)"] == 0){
 			res.send(JSON.stringify({affectedRows: 0}));
 		}
 		else{
 			const result = await db.pool.query(`insert into appointments (listing_id, customer_id, employee_id, date) values (${appointment.listing_id}, ${appointment.customer_id}, ${appointment.employee_id}, \"${appointment.date}\")`);
 			res.send(result);
 		}
+    } catch (err) {
+        throw err;
+    }
+});
+
+// PUT - update customer name or address ( username and password are final at creation )
+router.put('/appointments/:appointment_id', async function (req, res){
+    res.setHeader('content-type', 'application/json');
+    let appointment = appointmentFactory.appointmentFromJson(req.body);
+    try{    
+        let appointment_id = req.params["appointment_id"];
+        const result = await db.pool.query(`update appointments set `
+											+ `customer_id=${appointment.customer_id}, `
+											+ `employee_id=${appointment.employee_id}, `
+											+ `listing_id=${appointment.listing_id}, `
+											+ `date=\"${appointment.date}\" ` 											
+											+ `where appointment_id=${req.params["appointment_id"]}`);
+        res.send(result);
     } catch (err) {
         throw err;
     }

@@ -8,6 +8,7 @@ class Transaction {
 }
 
 function transactionFromJson(json) {
+	console.log(json);
     return new Transaction(json.customer_id, json.stock_id, json.transactionDate, json.employee_id);
 }
 
