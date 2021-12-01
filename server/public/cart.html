@@ -44,7 +44,7 @@
 						<div class="container">
 							
 							<div class="row">									
-								
+								<div id="archive"> 
 						</div>
 					</div>
 				</div>
@@ -95,7 +95,7 @@
 							let div_h5 = document.createElement("h5");
 							div_h5.setAttribute("class", "postTitle");
 							let div_p = document.createElement("p");
-							div_p.setAttribute("class", "postTitle")
+							div_p.setAttribute("class", "postTitle");
 							div.setAttribute("listing_id", post["listing_id"]);
 							div_h3.innerText = post["make"];
 							div_h4.innerText = post["model"];
@@ -130,13 +130,20 @@
 				archivedPost.forEach(post =>{
 					let archive_div = document.createElement("div");
 					archive_div.setAttribute("class", "archiveEntry");
+					let archive_div_h5 = document.createElement("h5");
 					let archive_div_h4 = document.createElement("h4");
+					let archive_div_h3 = document.createElement("h3");
 					let archive_div_p = document.createElement("p");
-					archive_div_h4.setAttribute("class", "title");
-					archive_div_p.setAttribute("class", "author");
-					archive_div_h4.innerText = post["title"];
-					archive_div_p.innerText = post["userId"];
-					archive_div.append(archive_div_h4, archive_div_p)
+					archive_div_h5.setAttribute("class","postTitle");
+					archive_div_h4.setAttribute("class", "postTitle");
+					archive_div_h3.setAttribute("class", "postTitle");
+					archive_div_p.setAttribute("class", "postTitle");
+					archive_div.setAttribute("listing_id", post["listing_id"]);
+					archive_div_h3.innerText = post["make"];
+					archive_div_h4.innerText = post["model"];
+					archive_div_h5.innerText = post["year"];
+					archive_div_p.innerText = post["price"];
+					archive_div.append(archive_div_h3,archive_div_h4,archive_div_h5 ,archive_div_p);
 					archive.append(archive_div);
 					
 					let deleteButton = document.createElement("button");

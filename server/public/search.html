@@ -130,9 +130,11 @@
 							div_h5.innerText = post["year"];
 							div_p.innerText = post["price"];
 							div.append(div_h3,div_h4,div_h5 ,div_p);
-		
+							
 							let button2 = document.createElement("button");
 							button2.innerText = "Add to Cart"
+							let colorExpand = document.createElement("button");
+							
 							button2.addEventListener("click", function(){
 								if(!archivedPost.includes(post)){
 									archivedPost.push(post);
@@ -153,7 +155,9 @@
 				
 					.catch(error => console.log(error));
 				}
-				
+				function loadColors(){
+					
+				}
 
 				function loadArchive(){
 				
@@ -164,13 +168,19 @@
 					archivedPost.forEach(post =>{
 						let archive_div = document.createElement("div");
 						archive_div.setAttribute("class", "archiveEntry");
+						let archive_div_h5 = document.createElement("h5");
 						let archive_div_h4 = document.createElement("h4");
+						let archive_div_h3 = document.createElement("h3");
 						let archive_div_p = document.createElement("p");
-						archive_div_h4.setAttribute("class", "title");
+
+						archive_div_h5.setAttribute("class", "postTitle");
+						archive_div_h4.setAttribute("class", "postTitle");
 						archive_div_p.setAttribute("class", "author");
-						archive_div_h4.innerText = post["title"];
-						archive_div_p.innerText = post["userId"];
-						archive_div.append(archive_div_h4, archive_div_p)
+						archive_div_h3.innerText = post["make"];
+						archive_div_h4.innerText = post["model"];
+						archive_div_h5.innerText = post["year"];
+						archive_div_p.innerText = post["price"];
+						archive_div.append(archive_div_h3,archive_div_h4,archive_div_h5 ,archive_div_p)
 						//archive.append(archive_div);
 						
 						// let deleteButton = document.createElement("button");
