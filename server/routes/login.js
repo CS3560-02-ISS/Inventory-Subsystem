@@ -6,6 +6,7 @@ var express = require('express'),
     var bcrypt = require("bcrypt");
 
 //restrict access to cart.html to loged in users
+/*
 router.use('/cart.html', function(req, res, next) {
     if(Object.keys(req.cookies).length != 0){
         if(req.cookies.auth == 'true'){
@@ -16,7 +17,7 @@ router.use('/cart.html', function(req, res, next) {
         res.redirect("/index.html");
     }
 });
-
+*/
 /*
 router.use("/admin/*", function(req, res, next){
   console.log("Cookies: ", req.cookies);
