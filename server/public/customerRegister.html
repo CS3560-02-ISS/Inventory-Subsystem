@@ -16,35 +16,59 @@
         </div>
         <div class="card">
             <div class="card-header">
-                <h1>Customer Login</h1>
+                <h1>Customer Register</h1>
             </div>
             <div class="card-content">
+               
                 <form class="login" id="login">
-                    <input type="text" name="customerUsername" id="customerUsername" placeholder="Username">
+                    <input type="text" name="customerName" id="customerName" placeholder="Name">
+                    <input type="text" id="customerAddress" placeholder="Address">
+                    <input type="text" id="customerUsername" placeholder="Username"> 
                     <input type="password" name="customerPassword" id="customerPassword" placeholder="Password">
+                    <input type="password" name="customerPassword" id="customerPasswordConfirm" placeholder="Password">
                     <div style="display: flex; align-items: center; width: 100%;  justify-content: end;">
                         <p style="color: rgba(179, 179, 180, 0.952);">Show Password </p>
                         <input type="checkbox" id="showPassword" style="height: 2vh; width: 2vh; margin-left: 1rem; ">
                     </div>
-                    <button type="submit">Login</button>
+                    <button style="background-color: grey;" id="register" disabled type="submit">Register</button>
                 </form>
             </div>
         </div>
     </main>
     <script>
         var login = document.getElementById("login");
+        var address = document.getElementById("customerAddress");
         var username = document.getElementById("customerUsername");
         var password = document.getElementById("customerPassword");
+        var confirmPassword = document.getElementById("customerPasswordConfirm");
         var loginFail = document.getElementById("loginFail");
         var showPassword = document.getElementById("showPassword");
+        var register = document.getElementById("register");
 
         showPassword.addEventListener("click", function() {
             var x = password;
-            if (x.type === "password") {
+            var y = confirmPassword;
+            if (x.type === "password" && y.type ==="password") {
                 x.type = "text";
+                y.type = "text";
             } else {
                 x.type = "password";
+                y.type = "password";
             }
+        })
+
+        confirmPassword.addEventListener('change', function() {
+            if (password.value === confirmPassword.value){
+                //console.log(password.value, confirmPassword.value);
+                register.disabled = false;
+                register.style = "background-color: blue";
+            }
+            else{
+                //console.log(password.value, confirmPassword.value);
+                register.disabled = true;
+                register.style = "background-color: grey";
+            }
+
         })
         
 

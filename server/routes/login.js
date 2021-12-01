@@ -44,7 +44,7 @@ router.post('/login', async function(req, res){
   const password = req.body.customerPassword;
   try{
       const result = await db.pool.query(`select customerPassword from customers where customerUsername = \"${username}\"`);
-      const hash = result[0]["employeePassword"];
+      const hash = result[0]["customerPassword"];
       bcrypt.compare(password, hash, function(err, result) {
         if(result){
           res.cookie('username', username, {maxAge: 360000});
