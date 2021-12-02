@@ -16,6 +16,17 @@ CREATE TABLE customers(
 	UNIQUE(customerUsername)
 );
 
+CREATE TABLE cards {
+	card_number INT NOT NULL,
+	civ 		INT NOT NULL,
+	expiration 	VARCHAR(4) NOT NULL,
+	customer_id INT NOT NULL,
+	PRIMARY KEY (card_number),
+	FOREIGN KEY (customer_id) REFERENCES customers (customer_id),
+	UNIQUE(card_number)
+}
+	
+
 CREATE TABLE employees(
 	employee_id 	INT NOT NULL AUTO_INCREMENT,
 	employeeName	VARCHAR(20) NOT NULL,

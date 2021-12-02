@@ -15,12 +15,12 @@
 		<link rel="modulepreload" href="/_app/start-74b72145.js">
 		<link rel="modulepreload" href="/_app/chunks/vendor-786b6522.js">
 		<link rel="modulepreload" href="/_app/pages/__layout.svelte-55c17930.js">
-		<link rel="modulepreload" href="/_app/pages/index.svelte-0438964f.js">
+		<link rel="modulepreload" href="/_app/pages/appointments/index.svelte-631e8278.js">
 		<link rel="modulepreload" href="/_app/chunks/customTable-d965812e.js">
 		<link rel="modulepreload" href="/_app/chunks/modal-736927c9.js">
 		<link rel="stylesheet" href="/_app/assets/start-61d1577b.css">
 		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-00e8e9f7.css">
-		<link rel="stylesheet" href="/_app/assets/pages/index.svelte-2b51334a.css">
+		<link rel="stylesheet" href="/_app/assets/pages/appointments/index.svelte-fb443ff3.css">
 		<link rel="stylesheet" href="/_app/assets/customTable-294b02c9.css">
 		<link rel="stylesheet" href="/_app/assets/modal-4e921c6b.css">
 
@@ -39,11 +39,11 @@
 					error: null,
 					nodes: [
 						import("/_app/pages/__layout.svelte-55c17930.js"),
-						import("/_app/pages/index.svelte-0438964f.js")
+						import("/_app/pages/appointments/index.svelte-631e8278.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
-						path: "\u002F",
+						path: "\u002Fappointments",
 						query: new URLSearchParams(""),
 						params: {}
 					}
@@ -60,12 +60,12 @@
             <li class="svelte-1h8c3xn"><a href="/appointments" class="svelte-1h8c3xn">Appointments</a></li>
             <li class="svelte-1h8c3xn"><a href="/transactions" class="svelte-1h8c3xn">Transactions</a></li></ul></nav>
     
-<div class="wrapper svelte-1uryyzp"><main class="svelte-1uryyzp"><h1>Employees</h1>
-        <div class="sub svelte-1uryyzp"><p class="svelte-1uryyzp">List of all currently registered employees</p>
-            <button class="svelte-1uryyzp">Create new employee</button></div>
-        <table class="svelte-14y5esq"><tr class="svelte-14y5esq"><th class="svelte-14y5esq">Name</th><th class="svelte-14y5esq">Address</th><th class="svelte-14y5esq">Id</th></tr>
+<div class="wrapper svelte-1uryyzp"><main class="svelte-1uryyzp"><h1>Appointments</h1>
+        <div class="sub svelte-1uryyzp"><p class="svelte-1uryyzp">List of all currently open appointments</p>
+            <button class="svelte-1uryyzp">Create new appointment</button></div>
+        <table class="svelte-14y5esq"><tr class="svelte-14y5esq"><th class="svelte-14y5esq">Date</th><th class="svelte-14y5esq">Customer</th><th class="svelte-14y5esq">Employee</th><th class="svelte-14y5esq">Listing</th><th class="svelte-14y5esq">Id</th></tr>
 
-    <tr class="svelte-14y5esq"><td class="svelte-14y5esq"><a sveltekit:prefetch href="/employees/1" class="svelte-14y5esq">asdf</a></td><td class="svelte-14y5esq"><a sveltekit:prefetch href="/employees/1" class="svelte-14y5esq">asdf</a></td><td class="svelte-14y5esq"><a sveltekit:prefetch href="/employees/1" class="svelte-14y5esq">1</a></td>
+    <tr class="svelte-14y5esq"><td class="svelte-14y5esq"><a sveltekit:prefetch href="/appointments/1" class="svelte-14y5esq">2021-11-12</a></td><td class="svelte-14y5esq"><a sveltekit:prefetch href="/appointments/1" class="svelte-14y5esq">1</a></td><td class="svelte-14y5esq"><a sveltekit:prefetch href="/appointments/1" class="svelte-14y5esq">1</a></td><td class="svelte-14y5esq"><a sveltekit:prefetch href="/appointments/1" class="svelte-14y5esq">1</a></td><td class="svelte-14y5esq"><a sveltekit:prefetch href="/appointments/1" class="svelte-14y5esq">1</a></td>
         </tr>
 
 </table>
