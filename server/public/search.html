@@ -109,7 +109,7 @@
 				}
 				function retrievePosts(){
 					
-					fetch('http://localhost:8080/listings?make=honda')
+					fetch('http://localhost:8080/listings')
 					.then(response => response.json())
 					.then(posts => {
 						posts.forEach(post => {
