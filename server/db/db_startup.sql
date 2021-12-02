@@ -24,7 +24,7 @@ CREATE TABLE cards (
 	PRIMARY KEY (card_number),
 	FOREIGN KEY(customer_id) REFERENCES customers (customer_id),
 	UNIQUE(card_number)
-)
+);
 	
 
 CREATE TABLE employees(
