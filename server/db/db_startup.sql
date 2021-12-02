@@ -17,7 +17,7 @@ CREATE TABLE customers(
 );
 
 CREATE TABLE cards (
-	card_number INT NOT NULL,
+	card_number VARCHAR(16) NOT NULL,
 	civ 		INT NOT NULL,
 	expiration 	VARCHAR(4) NOT NULL,
 	customer_id INT NOT NULL,

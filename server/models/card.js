@@ -2,7 +2,7 @@ class Card {
     constructor(card_number, civ, expiration, customer_id) {
         this.card_number = card_number;
 		this.civ = civ;
-		this expiration = expiration;
+		this.expiration = expiration;
 		this.customer_id = customer_id;
     }
 }

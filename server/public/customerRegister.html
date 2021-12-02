@@ -24,6 +24,10 @@
                     <input type="text" name="customerName" id="customerName" placeholder="Name">
                     <input type="text" id="customerAddress" placeholder="Address">
                     <input type="text" id="customerUsername" placeholder="Username"> 
+                    <input type="text" id="card_number" placeholder="Credit Card Number" maxlength="16" minlength="16"> 
+                    <input type="text" id="civ" placeholder="cv"> 
+                    <input type="text" id="expiration"  placeholder="mmyy" maxlength="4"> 
+
                     <input type="password" name="customerPassword" id="customerPassword" placeholder="Password">
                     <input type="password" name="customerPassword" id="customerPasswordConfirm" placeholder="Password">
                     <div style="display: flex; align-items: center; width: 100%;  justify-content: end;">
@@ -37,7 +41,7 @@
     </main>
     <script>
         var login = document.getElementById("login");
-        var name = document.getElementById("customerName");
+        var customerName = document.getElementById("customerName");
         var address = document.getElementById("customerAddress");
         var username = document.getElementById("customerUsername");
         var password = document.getElementById("customerPassword");
@@ -45,6 +49,9 @@
         var loginFail = document.getElementById("loginFail");
         var showPassword = document.getElementById("showPassword");
         var register = document.getElementById("register");
+        var card_number = document.getElementById("card_number");
+        var civ = document.getElementById("civ");
+        var expiration = document.getElementById("expiration");
 
         showPassword.addEventListener("click", function() {
             var x = password;
@@ -74,8 +81,11 @@
         
 
         login.addEventListener("submit", async function (event) {
+            console.log(customerName.value);
             event.preventDefault();
-            fetch("/login",
+            
+            
+            const res=await fetch("/customers",
                 {
                     headers: {
                     'Accept': 'application/json',
@@ -84,29 +94,39 @@
                     method: "POST",
                     body: JSON.stringify(
                         {
+                            "customerName": customerName.value,
+                            "customerAddress": address.value,
                             "customerUsername": username.value,
                             "customerPassword": password.value
                         }
                     ),
                 })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    if(data.attempt == false){
-                        loginFail.innerText = "Username/Password Incorrect";
-                        loginFail.style.display = "block";
-                        setTimeout(() => {loginFail.style.display = "none";}, 5000);
-                    }
-                    else if(data.attempt == 'unknown'){
-                        loginFail.innerText = "Account not found";
-                        loginFail.style.display = "block";
-                        setTimeout(() => {loginFail.style.display = "none";}, 5000);
-                    }
-                    else{
-                        window.location.href = "/index.html";
-                    }
+                
+                const data = await res.json();
+                const id = data.insertId;
+
+            console.log(data);
+
+
+            const res2=await fetch("/cards",
+                {
+                    headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify(
+                        {
+                            "card_number": card_number.value,
+                            "civ": civ.value,
+                            "expiration": expiration.value,
+                            "customer_id": id
+                        }
+                    ),
                 })
+                
                 .catch(err => console.log(err));
+                window.location.href = "/index.html";
         })
     </script>
 </body>

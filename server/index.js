@@ -9,6 +9,7 @@ var customerRoutes = require("./routes/customers");
 var employeeRoutes = require("./routes/employees")
 var loginRoutes = require("./routes/login");
 var appointmentRoutes = require("./routes/appointments");
+var cardRoutes = require("./routes/cards");
 var router = express.Router();
 
 var cookieParser = require('cookie-parser');
@@ -38,6 +39,7 @@ app.use(carRoutes);
 app.use(transactionRotues);
 app.use(customerRoutes);
 app.use(employeeRoutes);
+app.use(cardRoutes);
 
 
 app.listen(PORT, function(err){
